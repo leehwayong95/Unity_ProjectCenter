@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
 public class Blink : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     Text blink_Text;
+
+    // Start is called before the first frame update
     void Start()
     {
         blink_Text = GetComponent<Text>();
@@ -24,6 +25,7 @@ public class Blink : MonoBehaviour
             yield return new WaitForSeconds(.5f);
         }
     }
+
     // Update is called once per frame
     void Update()
     {
