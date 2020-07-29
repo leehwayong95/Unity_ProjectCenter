@@ -4,9 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Coffee
-  - playerNametag
-  - inputName
+  - input_name_canvas
   layers:
   - Default
   - TransparentFX
