@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - input_name_canvas
+  - Coworker
+  - Coffee
   layers:
   - Default
   - TransparentFX

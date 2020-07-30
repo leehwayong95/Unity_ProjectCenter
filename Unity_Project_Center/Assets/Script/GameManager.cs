@@ -17,8 +17,11 @@ public class GameManager : MonoBehaviour
     public Text textButton;
 
     public GameObject prefabCoffee;
-    public Image Panel_Gauge;
+    public Image Panel_Gauge; //Data 수집 UI
     public Text ProjectName;
+
+    public Image Panel_TimeGauge; //남은 Time UI
+    static float limitTime = 60;
 
     public static float[] StagePurpose = new float[] { 13f, 23f, 33f, 43f, 53f, 63f, 73f };
     int stage = 0;
@@ -31,14 +34,11 @@ public class GameManager : MonoBehaviour
         gm = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        //Panel_Gauge = GetComponent<UnityEngine.UI.Image>();
         ChangeButtonText();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //UI 위에서 마우스(터치)가 이루어지지 않을 때
@@ -50,26 +50,32 @@ public class GameManager : MonoBehaviour
             else
                 createCoffee();
         }
-
         showDataRate();
+        showTimeRate();
     }
 
     public void collectData()
     {
         if (Input.GetMouseButtonDown(0))
         {
-
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit, 100);
             if (data == StagePurpose[stage])
             {
                 data = 0;
+                limitTime = 60;
                 stage++;
                 showProjectName();
             }
-            else
+            else if(hit.transform.tag == "Coworker")
             {
                 data += 1;
+                hit.rigidbody.velocity = new Vector3(UnityEngine.Random.Range(-4, 4), 3, UnityEngine.Random.Range(-4, 4));
+                Debug.Log("click coworker");
             }
-            Debug.Log(data);
+            else
+                Debug.Log("click nothing");
         }
     }
 
@@ -77,9 +83,13 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-            Debug.Log(Input.mousePosition);
-            Instantiate(prefabCoffee, mousePosition, Quaternion.identity); ;
+            //레이져 쏴서 닿는 좌표구하기
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit, 1000);
+            Debug.Log(hit.point);
+            Vector3 hitpoint = new Vector3(hit.point.x, 2, hit.point.z);
+            Instantiate(prefabCoffee, hitpoint, Quaternion.identity); ;
         }
     }
 
@@ -102,9 +112,13 @@ public class GameManager : MonoBehaviour
 
     void showDataRate()
     {
-        //Image img = transform.Find("Logo").GetComponentInChildren<Canvas>.GetComponentInChildren<>
-        //Image img = transform.Find("Logo").transform.Find("Panel").transform.Find("Image_Gauge").GetComponent<Image>();
         Panel_Gauge.fillAmount = data / StagePurpose[stage];
+    }
+
+    void showTimeRate()
+    {
+        limitTime -= Time.deltaTime;
+        Panel_TimeGauge.fillAmount = limitTime / 60;
     }
 
     void showProjectName()
@@ -135,7 +149,7 @@ public class GameManager : MonoBehaviour
         GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
         Canvas canvas = GameObject.Find("InputNicknameCanvas").GetComponent<Canvas>();
         Text Nickname = canvas.GetComponentInChildren<InputField>().GetComponentInChildren<Text>();
-        EmployeeControl player = GameObject.Find("Player").GetComponent<EmployeeControl>();
+        PlayerControl player = GameObject.Find("Player").GetComponent<PlayerControl>();
         Canvas nextCanvs = GameObject.Find("Logo").GetComponent<Canvas>();
         
         player.setName(Nickname.text);

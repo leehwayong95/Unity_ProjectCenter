@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EmployeeControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     public Rigidbody enemy;
     public Canvas canvas;
     public Text enemyName;
     public mate info = new mate();
-    public Image hp_Gauge; 
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +21,7 @@ public class EmployeeControl : MonoBehaviour
             setInfo();
         }
         StartCoroutine(moveEnemy());
-        StartCoroutine(HpDecreaseAuto());
+        //StartCoroutine(HpDecreaseAuto());
     }
 
     IEnumerator moveEnemy()
@@ -44,6 +43,7 @@ public class EmployeeControl : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
     void Update()
     {
         Vector3 dir = canvas.transform.position - Camera.main.transform.position;
@@ -55,18 +55,15 @@ public class EmployeeControl : MonoBehaviour
         //Info 반영
         showInfo();
     }
-    
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Coffee"))
         {
             Debug.Log(this.name + "가 커피를 마셨다!");
             GameObject.Destroy(collision.gameObject);
-            info.hp += 5;
         }
 
     }
-
     void setInfo()
     {
         //info 정보 지정
@@ -79,7 +76,6 @@ public class EmployeeControl : MonoBehaviour
     void showInfo()
     {
         enemyName.text = info.name;
-        hp_Gauge.fillAmount = info.hp / 100;
     }
 
     public void setName(string name)
