@@ -8,7 +8,7 @@ public class EmployeeControl : MonoBehaviour
     public Rigidbody enemy;
     public Canvas canvas;
     public Text enemyName;
-    mate info = new mate();
+    public mate info = new mate();
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +57,11 @@ public class EmployeeControl : MonoBehaviour
     void showInfo()
     {
         enemyName.text = info.name;
+    }
+
+    public void setName(string name)
+    {
+        info.name = name;
     }
 
     public class mate
