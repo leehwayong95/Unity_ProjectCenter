@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
@@ -124,7 +125,7 @@ public class GameManager : MonoBehaviour
             names[6] = "덕용";
             names[7] = "형미";
 
-            return names[Random.Range(0, names.Length)];
+            return names[UnityEngine.Random.Range(0,names.Length)];
         }
     }
 

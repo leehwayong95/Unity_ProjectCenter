@@ -398,8 +398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612e06a5cba2cf045bb83892afc677c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas1: {fileID: 272636688}
-  canvas2: {fileID: 942929309}
+  canvas1: {fileID: 0}
+  canvas2: {fileID: 0}
 --- !u!1 &419376111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fbfab0dc45da542a2aa9246be87dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input_Name: {fileID: 1750888308}
+  input_Name: {fileID: 0}
 --- !u!1 &1009527301
 GameObject:
   m_ObjectHideFlags: 0

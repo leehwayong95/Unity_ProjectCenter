@@ -42,10 +42,9 @@ public class EmployeeControl : MonoBehaviour
         q.y = dir.y;
         canvas.transform.rotation = q;
 
-
+        //Info 반영
+        showInfo();
     }
-
-    void showDataRate()
     void setInfo()
     {
         //info 정보 지정
@@ -62,8 +61,6 @@ public class EmployeeControl : MonoBehaviour
 
     public class mate
     {
-        Image img = transform.Find("Logo/Panel/Image").GetComponent<Image>();
-        img.fillAmount = GameManager.data / 14f;
         public int gender;
         public string name;
         public float hp;
