@@ -110,5 +110,24 @@ public class GameManager : MonoBehaviour
         ProjectName.text = StageName[stage];
     }
 
+    public static string enemy_name
+    {
+        get
+        {
+            string[] names = new string[8];
+            names[0] = "화용";
+            names[1] = "정열";
+            names[2] = "인영";
+            names[3] = "용훈";
+            names[4] = "동원";
+            names[5] = "유정";
+            names[6] = "덕용";
+            names[7] = "형미";
+
+            return names[Random.Range(0, names.Length)];
+        }
+    }
+
+
     //IEnumerator showPanel_Gauge()
 }
