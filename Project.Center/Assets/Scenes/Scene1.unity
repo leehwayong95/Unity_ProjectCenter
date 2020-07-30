@@ -210,12 +210,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 72346c4b606b6984cac28ddde040a508, type: 3}
---- !u!223 &147452994 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 7919546562854248191, guid: 1c0c67f10ed53c74da60dce852d1fed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 764489458}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &214143791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,7 +1544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.2924, y: -13}
+  m_AnchoredPosition: {x: -9.292389, y: -13}
   m_SizeDelta: {x: 407, y: 229}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1145346670
@@ -1716,26 +1710,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1400091311 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 703907590043259578, guid: 1c0c67f10ed53c74da60dce852d1fed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 764489458}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1400091312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400091311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9244091ba4c749f43aa2daaf378d5285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coworker_canvas: {fileID: 147452994}
-  quater: {fileID: 1514283701}
 --- !u!1 &1408421979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,7 +2071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.2924, y: -30.4}
+  m_AnchoredPosition: {x: -9.292389, y: -30.399994}
   m_SizeDelta: {x: 407, y: 229}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1615889690
