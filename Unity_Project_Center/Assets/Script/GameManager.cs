@@ -74,6 +74,13 @@ public class GameManager : MonoBehaviour
                 hit.rigidbody.velocity = new Vector3(UnityEngine.Random.Range(-4, 4), 3, UnityEngine.Random.Range(-4, 4));
                 Debug.Log("click coworker");
             }
+            else if(hit.transform.tag == "Player")
+            {
+                cameraMove camera = GameObject.Find("Main Camera").GetComponent<cameraMove>();
+                camera.CallfocusPlayer();
+                PlayerControl player = GameObject.Find("Player").GetComponent<PlayerControl>();
+                player.showuiInfo();
+            }
             else
                 Debug.Log("click nothing");
         }

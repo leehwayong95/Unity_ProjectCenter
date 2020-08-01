@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -81,6 +82,31 @@ public class PlayerControl : MonoBehaviour
     public void setName(string name)
     {
         info.name = name;
+    }
+
+    public void showuiInfo()
+    {
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        Transform infoGroup = canvas.transform.GetChild(1);
+        Text name = infoGroup.transform.GetChild(3).GetComponent<Text>();
+        Text penalty = infoGroup.transform.GetChild(4).GetComponent<Text>();
+        Text gender = infoGroup.transform.GetChild(5).GetComponent<Text>();
+
+        name.text = info.name;
+        penalty.text = info.hp.ToString(); // 패널티 관련함수 추가
+        if (info.gender == 0)
+            gender.text = "여자";
+        else
+            gender.text = "남자";
+        infoGroup.gameObject.SetActive(true);
+    }
+
+    public void closeuiInfo()
+    {
+        GameObject infoGroup = GameObject.Find("Info");
+        cameraMove camera = GameObject.Find("Main Camera").GetComponent<cameraMove>();
+        camera.CallquarterView();
+        infoGroup.SetActive(false);
     }
 
     public class mate
