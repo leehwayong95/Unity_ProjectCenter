@@ -62,7 +62,8 @@ public class EmployeeControl : MonoBehaviour
         {
             Debug.Log(this.name + "가 커피를 마셨다!");
             GameObject.Destroy(collision.gameObject);
-            info.hp += 5;
+            if(!(info.hp >= 100))
+                info.hp += 5;
         }
 
     }
