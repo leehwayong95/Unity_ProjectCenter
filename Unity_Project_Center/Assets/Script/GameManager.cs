@@ -22,12 +22,15 @@ public class GameManager : MonoBehaviour
 
     public Image Panel_TimeGauge; //남은 Time UI
     static float limitTime = 60;
+    public int penalty = 0;
 
     public static float[] StagePurpose = new float[] { 13f, 23f, 33f, 43f, 53f, 63f, 73f };
     int stage = 0;
     public static string[] StageName = new string[]
         {"팀프로젝트1 : 인사정책", "팀프로젝트2 : 마케팅전략", "팀프로젝트3 : 상품전략", "팀프로젝트4 : 재무전략",
         "팀프로젝트5 : 마을사업", "팀프로젝트6 : 원물사업", "팀프로젝트7 : 지역정책"};
+
+    public GameObject Fail;
 
     private void Awake()
     {
@@ -52,6 +55,9 @@ public class GameManager : MonoBehaviour
         }
         showDataRate();
         showTimeRate();
+
+        if(penalty < 0)
+            penaltyControl();
     }
 
     public void collectData()
@@ -124,8 +130,25 @@ public class GameManager : MonoBehaviour
 
     void showTimeRate()
     {
-        limitTime -= Time.deltaTime;
-        Panel_TimeGauge.fillAmount = limitTime / 60;
+        if (limitTime > 0)
+        {
+            limitTime -= Time.deltaTime;
+            Panel_TimeGauge.fillAmount = limitTime / 60;
+        }
+        else
+        {
+            penalty -= 5;
+            limitTime = 60;
+        }
+    }
+
+    void penaltyControl()
+    {
+        if(penalty <= -10)
+        {
+            Fail.SetActive(true);
+            Time.timeScale = 0.0f;  //timescale에 대한 함수 만들면 수정, Fail public 선언했는데 GetComponent로 가져오고 싶으시면 바꾸셔도 됩니당!
+        }
     }
 
     void showProjectName()

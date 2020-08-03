@@ -39,8 +39,18 @@ public class EmployeeControl : MonoBehaviour
     {
         while(true)
         {
-            info.hp -= info.decrease_speed;
-            yield return new WaitForSeconds(1f);
+            if (info.hp > 0)
+            {
+                info.hp -= info.decrease_speed;
+                yield return new WaitForSeconds(1f);
+            }
+            else
+            {
+                GameManager.gm.penalty -= 3;
+                Debug.Log(GameManager.gm.penalty);
+
+                break;
+            }
         }
     }
 
