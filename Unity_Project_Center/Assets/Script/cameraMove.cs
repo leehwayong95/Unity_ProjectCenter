@@ -29,11 +29,13 @@ public class cameraMove : MonoBehaviour
 
     public void CallfocusPlayer()
     {
+        Time.timeScale = 0.0f;
         focusMode = true;
     }
 
     public void CallquarterView()
     {
+        Time.timeScale = 1.0f;
         focusMode = false;
     }
 
