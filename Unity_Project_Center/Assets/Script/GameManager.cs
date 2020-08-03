@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.UNetWeaver;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -21,8 +22,10 @@ public class GameManager : MonoBehaviour
     public Text ProjectName;
 
     public Image Panel_TimeGauge; //남은 Time UI
-    static float limitTime = 60;
+    public float limitTime = 60;
     public int penalty = 0;
+
+    public int tryCount = 0; //재시도 횟수
 
     public static float[] StagePurpose = new float[] { 13f, 23f, 33f, 43f, 53f, 63f, 73f };
     int stage = 0;
@@ -186,5 +189,19 @@ public class GameManager : MonoBehaviour
 
         Gcanvas.SetActive(false);
         nextCanvs.enabled = true;
+    }
+
+    public void Restart()
+    {
+        /************ 수정해야함 ************
+        GameObject popupMessage = GameObject.Find("Fail");
+        Canvas Logo = GameObject.Find("Logo").GetComponent<Canvas>();
+
+        this.limitTime = 60;
+        this.stage = 0;
+
+        Logo.enabled = true;
+        popupMessage.SetActive(false);
+        ************ 수정해야함 *************/
     }
 }

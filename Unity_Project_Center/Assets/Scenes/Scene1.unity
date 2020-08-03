@@ -2094,7 +2094,9 @@ MonoBehaviour:
   Panel_Gauge: {fileID: 1788194678}
   ProjectName: {fileID: 1147974930}
   Panel_TimeGauge: {fileID: 581802869}
+  limitTime: 60
   penalty: 0
+  tryCount: 0
   Fail: {fileID: 884988824}
 --- !u!4 &1185255726
 Transform:
@@ -3221,7 +3223,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1977245623}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1185255725}
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1977245623
 MonoBehaviour:
   m_ObjectHideFlags: 0
