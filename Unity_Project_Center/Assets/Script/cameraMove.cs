@@ -5,11 +5,13 @@ using UnityEngine;
 public class cameraMove : MonoBehaviour
 {
     bool focusMode = false;
-    Vector3 quarterView = new Vector3(11, 12, -11);
+    Vector3 quarterView;
+    Transform cameraTransform;
     // Start is called before the first frame update
     void Start()
     {
-        
+        cameraTransform = GetComponent<Transform>();
+        quarterView = new Vector3(cameraTransform.transform.position.x, cameraTransform.transform.position.y, cameraTransform.transform.position.z);    
     }
 
     // Update is called once per frame

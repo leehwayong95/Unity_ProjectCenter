@@ -69,7 +69,8 @@ public class GameManager : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit, 100);
+
+            Physics.Raycast(ray, out hit, 100); //ㅅㅂ
             if (data == StagePurpose[stage])
             {
                 data = 0;
