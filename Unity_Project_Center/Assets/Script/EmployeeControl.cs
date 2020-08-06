@@ -8,8 +8,8 @@ public class EmployeeControl : MonoBehaviour
     public Rigidbody enemy;
     public Canvas canvas;
     public Text enemyName;
-    public mate info = new mate();
-    public Image hp_Gauge; 
+    public Mate info = new Mate();
+    public Image hp_Gauge;
 
     // Start is called before the first frame update
     void Start()
@@ -38,14 +38,14 @@ public class EmployeeControl : MonoBehaviour
     {
         if (info.hp > 0)
         {
-            info.hp -= Time.deltaTime * info.decrease_speed;      
+            info.hp -= Time.deltaTime * info.decrease_speed;
         }
         else
         {
             GameManager.gm.Conflict.SetActive(true);
             Time.timeScale = 0.0f;
 
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 GameManager.gm.penalty -= 3;
                 Debug.Log(GameManager.gm.penalty);
@@ -70,14 +70,14 @@ public class EmployeeControl : MonoBehaviour
         showInfo();
         HpDecreaseAuto();
     }
-    
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Coffee"))
         {
             Debug.Log(this.name + "가 커피를 마셨다!");
             GameObject.Destroy(collision.gameObject);
-            if(!(info.hp >= 100))
+            if (!(info.hp >= 100))
                 info.hp += 5;
         }
 
@@ -102,12 +102,11 @@ public class EmployeeControl : MonoBehaviour
     {
         info.name = name;
     }
-
-    public class mate
-    {
-        public int gender;
-        public string name;
-        public float hp;
-        public float decrease_speed;
-    }
+}
+public class Mate
+{
+    public int gender;
+    public string name;
+    public float hp;
+    public float decrease_speed;
 }

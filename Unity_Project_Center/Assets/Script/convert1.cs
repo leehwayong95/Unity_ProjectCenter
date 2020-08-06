@@ -15,7 +15,7 @@ public class convert1 : MonoBehaviour
     void Start()
     {
         canvas1 = GetComponent<Canvas>();
-
+        Time.timeScale = 0.0f;
     }
 
     // Update is called once per frame

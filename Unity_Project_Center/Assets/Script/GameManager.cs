@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     public Image Panel_Gauge; //Data 수집 UI
     public Text ProjectName;
 
+    public List<Mate> emps;
+    public string savePath;
+    public GameObject prefabEmployee;
+
     public Image Panel_TimeGauge; //남은 Time UI
     public float limitTime = 60;
     public int penalty = 0;
@@ -28,7 +32,7 @@ public class GameManager : MonoBehaviour
     public int tryCount = 0; //재시도 횟수
 
     public static float[] StagePurpose = new float[] { 13f, 23f, 33f, 43f, 53f, 63f, 73f };
-    int stage = 0;
+    public int stage = 0;
     public static string[] StageName = new string[]
         {"팀프로젝트1 : 인사정책", "팀프로젝트2 : 마케팅전략", "팀프로젝트3 : 상품전략", "팀프로젝트4 : 재무전략",
         "팀프로젝트5 : 마을사업", "팀프로젝트6 : 원물사업", "팀프로젝트7 : 지역정책"};
@@ -45,6 +49,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        emps = new List<Mate>();
+        if (System.IO.File.Exists(savePath))
+        {
+            Load();
+            foreach (var a in emps)
+            {
+                InitializeEmployee(a);
+            }
+        }
         ChangeButtonText();
     }
 
@@ -173,6 +186,34 @@ public class GameManager : MonoBehaviour
         ProjectName.text = StageName[stage];
     }
 
+    public void Save()
+    {
+        //PlayerPrefs.SetInt("MONEY", (int)money);
+        SaveData sd = new SaveData();
+        sd.data = data;
+        sd.penalty = penalty;
+        sd.stage = stage;
+        sd.limitTime = limitTime;
+        sd.empList = emps;
+    }
+
+    public void Load()
+    {
+        //money = PlayerPrefs.GetInt("MONEY", 1000);        Save();
+        SaveData sd = XmlManager.XmlLoad<SaveData>(savePath);
+        data = sd.data;
+        penalty = sd.penalty;
+        stage = sd.stage;
+        limitTime = sd.limitTime;
+        emps = sd.empList;
+    }
+
+    public void InitializeEmployee(Mate e)
+    {
+        GameObject obj = Instantiate(prefabEmployee, Vector3.zero, Quaternion.identity);
+        obj.GetComponent<EmployeeControl>().info = e;
+    }
+
     public static string enemy_name
     {
         get
@@ -203,6 +244,7 @@ public class GameManager : MonoBehaviour
 
         Gcanvas.SetActive(false);
         nextCanvs.enabled = true;
+        Time.timeScale = 1f;
     }
 
     public void Restart()
