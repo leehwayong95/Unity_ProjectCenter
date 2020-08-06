@@ -22,7 +22,6 @@ public class EmployeeControl : MonoBehaviour
             setInfo();
         }
         StartCoroutine(moveEnemy());
-        StartCoroutine(HpDecreaseAuto());
     }
 
     IEnumerator moveEnemy()
@@ -35,22 +34,27 @@ public class EmployeeControl : MonoBehaviour
         }
     }
 
-    IEnumerator HpDecreaseAuto()
+    void HpDecreaseAuto()
     {
-        while(true)
+        if (info.hp > 0)
         {
-            if (info.hp > 0)
-            {
-                info.hp -= info.decrease_speed;
-                yield return new WaitForSeconds(1f);
-            }
-            else
+            info.hp -= Time.deltaTime * info.decrease_speed;      
+        }
+        else
+        {
+            GameManager.gm.Conflict.SetActive(true);
+            Time.timeScale = 0.0f;
+
+            if(Input.GetMouseButtonDown(0))
             {
                 GameManager.gm.penalty -= 3;
                 Debug.Log(GameManager.gm.penalty);
-
-                break;
+                GameManager.gm.Conflict.SetActive(false);
+                info.hp = 50;
+                Time.timeScale = 1.0f;
             }
+
+
         }
     }
 
@@ -64,6 +68,7 @@ public class EmployeeControl : MonoBehaviour
 
         //Info 반영
         showInfo();
+        HpDecreaseAuto();
     }
     
     void OnCollisionEnter(Collision collision)

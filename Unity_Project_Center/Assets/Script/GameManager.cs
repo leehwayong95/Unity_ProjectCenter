@@ -32,8 +32,11 @@ public class GameManager : MonoBehaviour
     public static string[] StageName = new string[]
         {"팀프로젝트1 : 인사정책", "팀프로젝트2 : 마케팅전략", "팀프로젝트3 : 상품전략", "팀프로젝트4 : 재무전략",
         "팀프로젝트5 : 마을사업", "팀프로젝트6 : 원물사업", "팀프로젝트7 : 지역정책"};
-
+    //Penalty UI object
     public GameObject Fail;
+    public GameObject BP;
+    public GameObject Conflict;
+    public GameObject Late;
 
     private void Awake()
     {
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            Physics.Raycast(ray, out hit, 100); //ㅅㅂ
+            Physics.Raycast(ray, out hit, 100); 
             if (data == StagePurpose[stage])
             {
                 data = 0;
@@ -139,19 +142,29 @@ public class GameManager : MonoBehaviour
             limitTime -= Time.deltaTime;
             Panel_TimeGauge.fillAmount = limitTime / 60;
         }
+
         else
         {
-            penalty -= 5;
-            limitTime = 60;
+            Late.SetActive(true);
+            Time.timeScale = 0.0f;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                penalty -= 3;
+                Debug.Log(GameManager.gm.penalty);
+                Late.SetActive(false);
+                limitTime = 50;
+                Time.timeScale = 1.0f;
+            }
         }
     }
 
     void penaltyControl()
     {
-        if(penalty <= -10)
+        if(penalty <= -20)
         {
             Fail.SetActive(true);
-            Time.timeScale = 0.0f;  //timescale에 대한 함수 만들면 수정, Fail public 선언했는데 GetComponent로 가져오고 싶으시면 바꾸셔도 됩니당!
+            Time.timeScale = 0.0f;
         }
     }
 
