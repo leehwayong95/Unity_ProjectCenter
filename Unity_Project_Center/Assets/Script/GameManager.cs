@@ -8,6 +8,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -259,5 +260,11 @@ public class GameManager : MonoBehaviour
         Logo.enabled = true;
         popupMessage.SetActive(false);
         ************ 수정해야함 *************/
+    }
+
+    public static void VideoStop()
+    {
+        VideoPlayer videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
+        videoPlayer.Stop();
     }
 }
