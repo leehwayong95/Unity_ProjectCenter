@@ -10,11 +10,11 @@ public class PlayerControl : MonoBehaviour
     public Canvas canvas;
     public Text enemyName;
     public mate info = new mate();
+    static bool startflag = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
         canvas = GetComponentInChildren<Canvas>();
         enemyName = canvas.GetComponentInChildren<Text>();
         if (string.IsNullOrEmpty(info.name))
@@ -30,8 +30,11 @@ public class PlayerControl : MonoBehaviour
         enemy = GetComponent<Rigidbody>();
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(2, 8));
-            enemy.velocity = new Vector3(Random.Range(-4, 4), 3, Random.Range(-4, 4));
+            if (startflag)
+            {
+                yield return new WaitForSeconds(Random.Range(2, 8));
+                enemy.velocity = new Vector3(Random.Range(-4, 4), 3, Random.Range(-4, 4));
+            }
         }
     }
 
@@ -39,8 +42,11 @@ public class PlayerControl : MonoBehaviour
     {
         while(true)
         {
-            info.hp -= info.decrease_speed;
-            yield return new WaitForSeconds(1f);
+            if (startflag)
+            {
+                info.hp -= info.decrease_speed;
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 
@@ -115,5 +121,15 @@ public class PlayerControl : MonoBehaviour
         public string name;
         public float hp;
         public float decrease_speed;
+    }
+
+    public static void gameStart()
+    {
+        startflag = true;
+    }
+
+    public static void gameStop()
+    {
+        startflag = false;
     }
 }
