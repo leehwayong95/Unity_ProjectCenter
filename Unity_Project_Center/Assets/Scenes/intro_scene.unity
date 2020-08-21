@@ -1612,7 +1612,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
 --- !u!4 &1005884089
@@ -3382,12 +3382,12 @@ Light:
   m_GameObject: {fileID: 1855074309}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 1
+  m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
+  m_Range: 300
+  m_SpotAngle: 74
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -3441,13 +3441,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855074309}
-  m_LocalRotation: {x: -0.5001782, y: 0.017925382, z: 0.28543335, w: -0.81732994}
-  m_LocalPosition: {x: 0, y: 12.63, z: -22.18}
+  m_LocalRotation: {x: -0.9030664, y: -0.16569321, z: 0.23310812, w: -0.32043314}
+  m_LocalPosition: {x: -2.67, y: 13.21, z: 4.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 53.842003, y: -32.249, z: -415.204}
+  m_LocalEulerAnglesHint: {x: 40.995003, y: -155.34601, z: -551.453}
 --- !u!64 &1861573723
 MeshCollider:
   m_ObjectHideFlags: 0
