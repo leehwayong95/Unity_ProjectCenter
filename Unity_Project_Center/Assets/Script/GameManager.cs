@@ -7,6 +7,7 @@ using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     public GameObject BP;
     public GameObject Conflict;
     public GameObject Late;
+    public static String userName;
 
     private void Awake()
     {
@@ -160,7 +162,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Late.SetActive(true);
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -235,9 +237,17 @@ public class GameManager : MonoBehaviour
 
     public void changeNickname()
     {
+
+        
         GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
         Canvas canvas = GameObject.Find("InputNicknameCanvas").GetComponent<Canvas>();
         Text Nickname = canvas.GetComponentInChildren<InputField>().GetComponentInChildren<Text>();
+        userName = Nickname.ToString();
+
+        SceneManager.LoadScene(1);
+
+        //씬 불러오고, Gamemanager distory 안되게끔 
+        /*
         PlayerControl player = GameObject.Find("Player").GetComponent<PlayerControl>();
         Canvas nextCanvs = GameObject.Find("Logo").GetComponent<Canvas>();
         
@@ -246,6 +256,8 @@ public class GameManager : MonoBehaviour
         Gcanvas.SetActive(false);
         nextCanvs.enabled = true;
         Time.timeScale = 1f;
+        */
+
     }
 
     public void Restart()

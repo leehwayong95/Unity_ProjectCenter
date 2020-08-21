@@ -74,7 +74,8 @@ public class PlayerControl : MonoBehaviour
     void setInfo()
     {
         //info 정보 지정
-        info.name = GameManager.enemy_name;
+        info.name = "이용훈";
+            //GameManager.enemy_name;
         info.hp = 100;
         info.decrease_speed = Random.Range(1, 8);
         info.gender = Random.Range(0, 1);
