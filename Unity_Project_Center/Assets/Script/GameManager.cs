@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         gm = this;
+        DontDestroyOnLoad(this);
     }
 
     void Start()
@@ -239,10 +240,10 @@ public class GameManager : MonoBehaviour
     {
 
         
-        GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
+        //GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
         Canvas canvas = GameObject.Find("InputNicknameCanvas").GetComponent<Canvas>();
         Text Nickname = canvas.GetComponentInChildren<InputField>().GetComponentInChildren<Text>();
-        userName = Nickname.ToString();
+        userName = Nickname.text.ToString();
 
         SceneManager.LoadScene(1);
 

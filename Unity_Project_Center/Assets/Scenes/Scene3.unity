@@ -309,7 +309,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1023051586}
+      - m_Target: {fileID: 0}
         m_MethodName: changeNickname
         m_Mode: 1
         m_Arguments:
@@ -911,7 +911,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: -270, y: 90, z: -90}
 --- !u!1 &347322220
 GameObject:
@@ -1919,67 +1919,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1023051585
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1023051587}
-  - component: {fileID: 1023051586}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1023051586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023051585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4900857eab5e1d24a8d9c5d00cabe894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textButton: {fileID: 178188613}
-  prefabCoffee: {fileID: 1573329297470402, guid: 5a755b0cb9b4aed48b79e465163413f2,
-    type: 3}
-  Panel_Gauge: {fileID: 2136501170}
-  ProjectName: {fileID: 1506146565}
-  savePath: 
-  prefabEmployee: {fileID: 703907590043259578, guid: 1c0c67f10ed53c74da60dce852d1fed1,
-    type: 3}
-  Panel_TimeGauge: {fileID: 218409343}
-  limitTime: 60
-  penalty: 0
-  tryCount: 0
-  stage: 0
-  Fail: {fileID: 347322220}
-  BP: {fileID: 1583092185}
-  Conflict: {fileID: 1570731531}
-  Late: {fileID: 1287914571}
---- !u!4 &1023051587
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023051585}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 301.83392, y: 155.54396, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056468933
 GameObject:
@@ -2589,7 +2529,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1023051586}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeButtonText
         m_Mode: 1
         m_Arguments:
@@ -3276,7 +3216,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1506146562
 GameObject:
@@ -3770,7 +3710,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1023051586}
+      - m_Target: {fileID: 0}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
