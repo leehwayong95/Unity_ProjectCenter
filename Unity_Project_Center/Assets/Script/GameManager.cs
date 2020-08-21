@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.UNetWeaver;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
@@ -242,10 +243,12 @@ public class GameManager : MonoBehaviour
         
         //GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
         Canvas canvas = GameObject.Find("InputNicknameCanvas").GetComponent<Canvas>();
+        Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
         Text Nickname = canvas.GetComponentInChildren<InputField>().GetComponentInChildren<Text>();
         userName = Nickname.text.ToString();
 
         SceneManager.LoadScene(1);
+        nextCanvas.enabled = true;
 
         //씬 불러오고, Gamemanager distory 안되게끔 
         /*

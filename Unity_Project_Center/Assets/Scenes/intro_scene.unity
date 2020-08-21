@@ -1385,6 +1385,7 @@ GameObject:
   - component: {fileID: 855082052}
   - component: {fileID: 855082051}
   - component: {fileID: 855082050}
+  - component: {fileID: 855082053}
   m_Layer: 5
   m_Name: Popup
   m_TagString: Untagged
@@ -1475,6 +1476,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &855082053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855082048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ef896036b1d00449ce8d78bcf7b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &932370384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,6 +2067,7 @@ GameObject:
   - component: {fileID: 1167106810}
   - component: {fileID: 1167106809}
   - component: {fileID: 1167106808}
+  - component: {fileID: 1167106811}
   m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
@@ -2147,6 +2161,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1167106811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167106806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ef896036b1d00449ce8d78bcf7b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!64 &1169475944
 MeshCollider:
   m_ObjectHideFlags: 0
