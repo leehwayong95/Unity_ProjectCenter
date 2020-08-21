@@ -28,7 +28,7 @@ public class convert1 : MonoBehaviour
     {
         //convert2.enabled 
         canvas2.enabled = true;
-        GameManager.VideoStop();
+        //GameManager.VideoStop();
         canvas1.enabled = false;
         PlayerControl.gameStart();
     }
