@@ -2,11 +2,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.UNetWeaver;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject prefabCoffee;
     public Image Panel_Gauge; //Data 수집 UI
+    public Text ProjectName;
 
     public List<Mate> emps;
     public string savePath;
@@ -33,18 +36,20 @@ public class GameManager : MonoBehaviour
 
     public static float[] StagePurpose = new float[] { 13f, 23f, 33f, 43f, 53f, 63f, 73f };
     public int stage = 0;
-    public Sprite[] ProjectName;
-    public Image Project_Name;
-
+    public static string[] StageName = new string[]
+        {"팀프로젝트1 : 인사정책", "팀프로젝트2 : 마케팅전략", "팀프로젝트3 : 상품전략", "팀프로젝트4 : 재무전략",
+        "팀프로젝트5 : 마을사업", "팀프로젝트6 : 원물사업", "팀프로젝트7 : 지역정책"};
     //Penalty UI object
     public GameObject Fail;
     public GameObject BP;
     public GameObject Conflict;
     public GameObject Late;
+    public static String userName;
 
     private void Awake()
     {
         gm = this;
+        DontDestroyOnLoad(this);
     }
 
     void Start()
@@ -159,7 +164,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Late.SetActive(true);
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -183,7 +188,7 @@ public class GameManager : MonoBehaviour
 
     void showProjectName()
     {
-        Project_Name.sprite = ProjectName[stage];
+        ProjectName.text = StageName[stage];
     }
 
     public void Save()
@@ -234,9 +239,19 @@ public class GameManager : MonoBehaviour
 
     public void changeNickname()
     {
-        GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
+
+        
+        //GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
         Canvas canvas = GameObject.Find("InputNicknameCanvas").GetComponent<Canvas>();
+        Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
         Text Nickname = canvas.GetComponentInChildren<InputField>().GetComponentInChildren<Text>();
+        userName = Nickname.text.ToString();
+
+        SceneManager.LoadScene(1);
+        nextCanvas.enabled = true;
+
+        //씬 불러오고, Gamemanager distory 안되게끔 
+        /*
         PlayerControl player = GameObject.Find("Player").GetComponent<PlayerControl>();
         Canvas nextCanvs = GameObject.Find("Logo").GetComponent<Canvas>();
         
@@ -245,6 +260,8 @@ public class GameManager : MonoBehaviour
         Gcanvas.SetActive(false);
         nextCanvs.enabled = true;
         Time.timeScale = 1f;
+        */
+
     }
 
     public void Restart()
