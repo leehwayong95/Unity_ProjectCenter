@@ -18,11 +18,9 @@ public class GameManager : MonoBehaviour
     public static long data = 0;
 
     bool collect = false;
-    public Text textButton;
 
     public GameObject prefabCoffee;
     public Image Panel_Gauge; //Data 수집 UI
-    public Text ProjectName;
 
     public List<Mate> emps;
     public string savePath;
@@ -36,9 +34,12 @@ public class GameManager : MonoBehaviour
 
     public static float[] StagePurpose = new float[] { 13f, 23f, 33f, 43f, 53f, 63f, 73f };
     public int stage = 0;
-    public static string[] StageName = new string[]
-        {"팀프로젝트1 : 인사정책", "팀프로젝트2 : 마케팅전략", "팀프로젝트3 : 상품전략", "팀프로젝트4 : 재무전략",
-        "팀프로젝트5 : 마을사업", "팀프로젝트6 : 원물사업", "팀프로젝트7 : 지역정책"};
+
+    public Sprite[] ProjectName;
+    public Image Project_Name;
+    public Sprite[] ButtonStates;
+    public Image Button_img;
+
     //Penalty UI object
     public GameObject Fail;
     public GameObject BP;
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
                 InitializeEmployee(a);
             }
         }
-        ChangeButtonText();
+        ChangeButtonImage();
     }
 
     void Update()
@@ -131,19 +132,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeButtonText()
+    public void ChangeButtonImage()
     {
         //자료수집 : true
         //커피 : false
         if (collect)
         {
             collect = false;
-            textButton.text = "커피";
+            Button_img.sprite = ButtonStates[0];
         }
         else
         {
             collect = true;
-            textButton.text = "자료수집";
+            Button_img.sprite = ButtonStates[1];
         }
 
     }
@@ -188,7 +189,7 @@ public class GameManager : MonoBehaviour
 
     void showProjectName()
     {
-        ProjectName.text = StageName[stage];
+        Project_Name.sprite = ProjectName[stage];
     }
 
     public void Save()
