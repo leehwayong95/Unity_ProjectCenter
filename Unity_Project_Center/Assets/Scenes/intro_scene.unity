@@ -1532,6 +1532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023051587}
   - component: {fileID: 1023051586}
+  - component: {fileID: 1023051588}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1559,7 +1560,6 @@ MonoBehaviour:
     type: 3}
   Panel_TimeGauge: {fileID: 534627680}
   limitTime: 60
-  penalty: 0
   tryCount: 0
   stage: 0
   ProjectName:
@@ -1593,6 +1593,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1023051588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023051585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4319a53411263724f89764f0626cc9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursor:
+  - {fileID: 2800000, guid: 19d606b4769610d46b8142b704304c83, type: 3}
+  - {fileID: 2800000, guid: f8c8bf49761a55c4a914e710e0b6a1bd, type: 3}
+  hotSpotIsCenter: 0
+  adjustHotspot: {x: 0, y: 0}
 --- !u!64 &1088341794
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3124,7 +3141,6 @@ GameObject:
   - component: {fileID: 2103554575}
   - component: {fileID: 2103554574}
   - component: {fileID: 2103554573}
-  - component: {fileID: 2103554572}
   m_Layer: 5
   m_Name: InputNicknameCanvas
   m_TagString: input_name_canvas
@@ -3153,18 +3169,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &2103554572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103554570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1fbfab0dc45da542a2aa9246be87dd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2103554573
 MonoBehaviour:
   m_ObjectHideFlags: 0

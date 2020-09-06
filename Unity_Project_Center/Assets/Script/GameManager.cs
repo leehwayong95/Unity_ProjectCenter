@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
     public static long data = 0;
 
-    bool collect = false;
+    public static bool collect = false; //true : 자료수집 , false : 커피
 
     public GameObject prefabCoffee;
     public Image Panel_Gauge; //Data 수집 UI
