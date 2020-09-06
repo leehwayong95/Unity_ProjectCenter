@@ -10,6 +10,7 @@ public class EmployeeControl : MonoBehaviour
     public Text enemyName;
     public Mate info = new Mate();
     public Image hp_Gauge;
+    public static bool startflag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,32 +30,36 @@ public class EmployeeControl : MonoBehaviour
         enemy = GetComponent<Rigidbody>();
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(2, 8));
-            enemy.velocity = new Vector3(Random.Range(-4, 4), 3, Random.Range(-4, 4));
+            if (startflag)
+            {
+                yield return new WaitForSeconds(Random.Range(2, 8));
+                enemy.velocity = new Vector3(Random.Range(-4, 4), 3, Random.Range(-4, 4));
+            }
         }
     }
 
     void HpDecreaseAuto()
     {
-        if (info.hp > 0)
+        if (startflag)
         {
-            info.hp -= Time.deltaTime * info.decrease_speed;
-        }
-        else
-        {
-            GameManager.gm.Conflict.SetActive(true);
-            Time.timeScale = 0.0f;
-
-            if (Input.GetMouseButtonDown(0))
+            if (info.hp > 0)
             {
-                GameManager.gm.penalty -= 3;
-                Debug.Log(GameManager.gm.penalty);
-                GameManager.gm.Conflict.SetActive(false);
-                info.hp = 50;
-                Time.timeScale = 1.0f;
+                info.hp -= Time.deltaTime * info.decrease_speed;
             }
+            else
+            {
+                GameManager.gm.Conflict.SetActive(true);
+                Time.timeScale = 0.0f;
 
-
+                if (Input.GetMouseButtonDown(0))
+                {
+                    GameManager.penalty -= 3;
+                    Debug.Log(GameManager.penalty);
+                    GameManager.gm.Conflict.SetActive(false);
+                    info.hp = 50;
+                    Time.timeScale = 1.0f;
+                }
+            }
         }
     }
 
@@ -101,6 +106,15 @@ public class EmployeeControl : MonoBehaviour
     public void setName(string name)
     {
         info.name = name;
+    }
+    public static void gameStart()
+    {
+        startflag = true;
+    }
+
+    public static void gameStop()
+    {
+        startflag = false;
     }
 }
 public class Mate

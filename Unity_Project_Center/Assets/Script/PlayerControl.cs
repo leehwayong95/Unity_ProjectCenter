@@ -74,10 +74,8 @@ public class PlayerControl : MonoBehaviour
         //info 정보 지정
         Debug.Log(GameManager.userName);
         info.name = GameManager.userName.ToString();
-            //GameManager.enemy_name;
-        info.hp = 100;
         info.decrease_speed = Random.Range(1, 8);
-        info.gender = Random.Range(0, 1);
+        info.gender = Random.Range(0, 2);
     }
 
     void showInfo()
@@ -99,7 +97,7 @@ public class PlayerControl : MonoBehaviour
         Text gender = infoGroup.transform.GetChild(5).GetComponent<Text>();
 
         name.text = info.name;
-        penalty.text = info.hp.ToString(); // 패널티 관련함수 추가
+        penalty.text = GameManager.penalty.ToString();
         if (info.gender == 0)
             gender.text = "여자";
         else

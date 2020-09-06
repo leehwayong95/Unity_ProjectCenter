@@ -30,6 +30,5 @@ public class convert1 : MonoBehaviour
         canvas2.enabled = true;
         //GameManager.VideoStop();
         canvas1.enabled = false;
-        PlayerControl.gameStart();
     }
 }

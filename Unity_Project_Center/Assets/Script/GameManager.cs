@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public Image Panel_TimeGauge; //남은 Time UI
     public float limitTime = 60;
-    public int penalty = 0;
+    public static int penalty = 0;
 
     public int tryCount = 0; //재시도 횟수
 
@@ -156,24 +156,27 @@ public class GameManager : MonoBehaviour
 
     void showTimeRate()
     {
-        if (limitTime > 0)
+        if (EmployeeControl.startflag)
         {
-            limitTime -= Time.deltaTime;
-            Panel_TimeGauge.fillAmount = limitTime / 60;
-        }
-
-        else
-        {
-            Late.SetActive(true);
-            //Time.timeScale = 0.0f;
-
-            if (Input.GetMouseButtonDown(0))
+            if (limitTime > 0)
             {
-                penalty -= 3;
-                Debug.Log(GameManager.gm.penalty);
-                Late.SetActive(false);
-                limitTime = 50;
-                Time.timeScale = 1.0f;
+                limitTime -= Time.deltaTime;
+                Panel_TimeGauge.fillAmount = limitTime / 60;
+            }
+
+            else
+            {
+                Late.SetActive(true);
+                //Time.timeScale = 0.0f;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    penalty -= 3;
+                    Debug.Log(GameManager.penalty);
+                    Late.SetActive(false);
+                    limitTime = 50;
+                    Time.timeScale = 1.0f;
+                }
             }
         }
     }
@@ -247,10 +250,11 @@ public class GameManager : MonoBehaviour
         Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
         Text Nickname = canvas.GetComponentInChildren<InputField>().GetComponentInChildren<Text>();
         userName = Nickname.text.ToString();
-
+        EmployeeControl.gameStart();
+        PlayerControl.gameStart();
         SceneManager.LoadScene(1);
         nextCanvas.enabled = true;
-
+        
         //씬 불러오고, Gamemanager distory 안되게끔 
         /*
         PlayerControl player = GameObject.Find("Player").GetComponent<PlayerControl>();
@@ -262,21 +266,21 @@ public class GameManager : MonoBehaviour
         nextCanvs.enabled = true;
         Time.timeScale = 1f;
         */
-
     }
 
-    public void Restart()
+    public void Restart()//재시작 기능
     {
-        /************ 수정해야함 ************
-        GameObject popupMessage = GameObject.Find("Fail");
-        Canvas Logo = GameObject.Find("Logo").GetComponent<Canvas>();
+        PlayerControl.gameStop();
+        EmployeeControl.gameStop();
+        Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
+        Fail.SetActive(false);
+        penalty = 0;
+        Time.timeScale = 1.0f;
+        limitTime = 60;
 
-        this.limitTime = 60;
-        this.stage = 0;
-
-        Logo.enabled = true;
-        popupMessage.SetActive(false);
-        ************ 수정해야함 *************/
+        nextCanvas.enabled = false;
+        SceneManager.LoadScene(0);
+        tryCount++;
     }
 
     public static void VideoStop()
