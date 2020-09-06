@@ -15,7 +15,7 @@ using UnityEngine.Video;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
-    public static long data = 0;
+    public long data = 0;
 
     public static bool collect = false; //true : 자료수집 , false : 커피
 
@@ -28,9 +28,6 @@ public class GameManager : MonoBehaviour
 
     public Image Panel_TimeGauge; //남은 Time UI
     public float limitTime = 60;
-    public static int penalty = 0;
-
-    public int tryCount = 0; //재시도 횟수
 
     public static float[] StagePurpose = new float[] { 13f, 23f, 33f, 43f, 53f, 63f, 73f };
     public int stage = 0;
@@ -45,7 +42,14 @@ public class GameManager : MonoBehaviour
     public GameObject BP;
     public GameObject Conflict;
     public GameObject Late;
+
+
+    //DB에 저장하는것들
     public static String userName;
+    public int playTime = 0;
+    public int createcoffeeCount = 0;
+    public static int penalty = 0;
+    public int tryCount = 0; //재시도 횟수
 
     private void Awake()
     {
@@ -70,18 +74,24 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //UI 위에서 마우스(터치)가 이루어지지 않을 때
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject() && stage < 7)
         {
             if (collect == true)
                 collectData();   //함수실행
 
             else
                 createCoffee();
+            showDataRate();
+            showTimeRate();
         }
-        showDataRate();
-        showTimeRate();
+        else //7stage 클리어시
+        {
+            StopCoroutine(countPlayTime());
+            StartCoroutine(insertDBlog());
+            //여기에 DB push
+        }
 
-        if(penalty < 0)
+        if (penalty < 0)
             penaltyControl();
     }
 
@@ -92,7 +102,7 @@ public class GameManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            Physics.Raycast(ray, out hit, 100); 
+            Physics.Raycast(ray, out hit, 100);
             if (data == StagePurpose[stage])
             {
                 data = 0;
@@ -129,6 +139,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(hit.point);
             Vector3 hitpoint = new Vector3(hit.point.x, 2, hit.point.z);
             Instantiate(prefabCoffee, hitpoint, Quaternion.identity); ;
+            createcoffeeCount++;
         }
     }
 
@@ -243,8 +254,6 @@ public class GameManager : MonoBehaviour
 
     public void changeNickname()
     {
-
-        
         //GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
         Canvas canvas = GameObject.Find("InputNicknameCanvas").GetComponent<Canvas>();
         Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
@@ -254,18 +263,7 @@ public class GameManager : MonoBehaviour
         PlayerControl.gameStart();
         SceneManager.LoadScene(1);
         nextCanvas.enabled = true;
-        
-        //씬 불러오고, Gamemanager distory 안되게끔 
-        /*
-        PlayerControl player = GameObject.Find("Player").GetComponent<PlayerControl>();
-        Canvas nextCanvs = GameObject.Find("Logo").GetComponent<Canvas>();
-        
-        player.setName(Nickname.text);
-
-        Gcanvas.SetActive(false);
-        nextCanvs.enabled = true;
-        Time.timeScale = 1f;
-        */
+        StartCoroutine(countPlayTime());
     }
 
     public void Restart()//재시작 기능
@@ -287,5 +285,20 @@ public class GameManager : MonoBehaviour
     {
         VideoPlayer videoPlayer = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
         videoPlayer.Stop();
+    }
+
+    IEnumerator countPlayTime()
+    {
+        while (true)
+        {
+            playTime++;
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    IEnumerator insertDBlog()
+    {
+        Debug.Log(userName + " " + playTime + " " + createcoffeeCount + " " + penalty + " " + tryCount);
+        yield return null;
     }
 }
