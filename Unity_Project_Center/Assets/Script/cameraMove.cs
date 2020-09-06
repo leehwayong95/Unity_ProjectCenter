@@ -49,7 +49,7 @@ public class cameraMove : MonoBehaviour
     IEnumerator focusPlayer()
     {
         Transform player = GameObject.Find("Player").GetComponent<Transform>();
-        Vector3 targetPosition = new Vector3(player.position.x + 3, player.position.y + 4.5f, player.position.z - 3 );
+        Vector3 targetPosition = new Vector3(player.position.x + 2, player.position.y + 5.5f, player.position.z - 3 );
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetPosition, 0.1f);
         yield return null;
     }
