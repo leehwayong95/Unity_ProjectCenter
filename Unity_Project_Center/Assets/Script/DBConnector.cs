@@ -46,7 +46,9 @@ public class DBConnector : MonoBehaviour
 
             "Password=1234;" +
 
-            "Pooling=false";
+            "Pooling=false;" +
+            
+            "Character set=utf8";
 
         dbConnection = new MySqlConnection(connectionString);
 
@@ -72,7 +74,7 @@ public class DBConnector : MonoBehaviour
 
 
     // Disconnect from database
-    private static void closeSqlConnection()
+    public static void closeSqlConnection()
     {
         dbConnection.Close();
         dbConnection = null;

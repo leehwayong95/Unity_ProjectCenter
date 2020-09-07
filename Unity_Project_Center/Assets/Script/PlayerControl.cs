@@ -75,7 +75,7 @@ public class PlayerControl : MonoBehaviour
         Debug.Log(GameManager.userName);
         info.name = GameManager.userName.ToString();
         info.decrease_speed = Random.Range(1, 8);
-        info.gender = Random.Range(0, 2);
+        info.gender = Random.Range(0, 1);
     }
 
     void showInfo()

@@ -3040,7 +3040,6 @@ GameObject:
   - component: {fileID: 2103554575}
   - component: {fileID: 2103554574}
   - component: {fileID: 2103554573}
-  - component: {fileID: 2103554572}
   m_Layer: 5
   m_Name: InputNicknameCanvas
   m_TagString: input_name_canvas
@@ -3069,18 +3068,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &2103554572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103554570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1fbfab0dc45da542a2aa9246be87dd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2103554573
 MonoBehaviour:
   m_ObjectHideFlags: 0

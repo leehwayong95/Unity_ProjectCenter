@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using MySql.Data.MySqlClient;
+using System.Text;
 
 public class GameManager : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     //DBConnector
     DBConnector dbConnector;
+    bool doneFlag = false;
 
     private void Awake()
     {
@@ -88,10 +90,13 @@ public class GameManager : MonoBehaviour
             showDataRate();
             showTimeRate();
         }
-        else //7stage 클리어시
+        else if(stage == 7) //7stage 클리어시
         {
             StopCoroutine(countPlayTime());
-            StartCoroutine(insertDBlog());
+            if (!doneFlag)
+                StartCoroutine(callMysql());
+            else
+                StopCoroutine(callMysql());
             //여기에 DB push
         }
 
@@ -212,13 +217,6 @@ public class GameManager : MonoBehaviour
         Project_Name.sprite = ProjectName[stage];
     }
 
-    public void callMysql()
-    {
-        MySqlDataReader reader = DBConnector.Instance.doQuery
-            ("insert into leaderboard values (0,\"test\",30,30,30,30);");
-        Debug.Log("Done!");
-    }
-
     public void Save()
     {
         //PlayerPrefs.SetInt("MONEY", (int)money);
@@ -251,7 +249,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            string[] names = new string[8];
+            string[] names = new string[9];
             names[0] = "화용";
             names[1] = "정열";
             names[2] = "인영";
@@ -259,7 +257,8 @@ public class GameManager : MonoBehaviour
             names[4] = "동원";
             names[5] = "유정";
             names[6] = "덕용";
-            names[7] = "형미";
+            names[7] = "대우";
+            names[8] = "동혁";
 
             return names[UnityEngine.Random.Range(0, names.Length)];
         }
@@ -309,9 +308,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator insertDBlog()
+    IEnumerator callMysql()
     {
-        Debug.Log(userName + " " + playTime + " " + createcoffeeCount + " " + penalty + " " + tryCount);
+        //String 인코딩
+        byte[] bytesForEncoding = UTF8Encoding.UTF8.GetBytes(userName);
+        string encodedString = UTF8Encoding.UTF8.GetString(bytesForEncoding);
+
+        Debug.Log(userName);
+        MySqlDataReader reader = DBConnector.Instance.doQuery
+            ("insert into leaderboard values " +
+            "(0,\"" + encodedString + "\"," + playTime + "," + createcoffeeCount + "," + penalty + "," + tryCount + ");"
+            );
+        doneFlag = true;
+        DBConnector.closeSqlConnection();
         yield return null;
     }
 }
