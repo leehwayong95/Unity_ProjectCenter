@@ -1031,7 +1031,7 @@ PrefabInstance:
     - target: {fileID: 6186423559679319318, guid: 1c0c67f10ed53c74da60dce852d1fed1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6186423559679319318, guid: 1c0c67f10ed53c74da60dce852d1fed1,
         type: 3}
@@ -1383,7 +1383,7 @@ PrefabInstance:
     - target: {fileID: 6186423559679319318, guid: 0d064772484f1174ca97d137991d0258,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6186423559679319318, guid: 0d064772484f1174ca97d137991d0258,
         type: 3}
@@ -1522,7 +1522,7 @@ PrefabInstance:
     - target: {fileID: 6186423559679319318, guid: 1c0c67f10ed53c74da60dce852d1fed1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6186423559679319318, guid: 1c0c67f10ed53c74da60dce852d1fed1,
         type: 3}
@@ -2199,7 +2199,7 @@ PrefabInstance:
     - target: {fileID: 6186423559679319318, guid: 1c0c67f10ed53c74da60dce852d1fed1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6186423559679319318, guid: 1c0c67f10ed53c74da60dce852d1fed1,
         type: 3}
@@ -2236,6 +2236,11 @@ PrefabInstance:
       propertyPath: hp_Gauge
       value: 
       objectReference: {fileID: 30992233}
+    - target: {fileID: 9085870126219108902, guid: 1c0c67f10ed53c74da60dce852d1fed1,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c0c67f10ed53c74da60dce852d1fed1, type: 3}
 --- !u!1 &1788207645 stripped

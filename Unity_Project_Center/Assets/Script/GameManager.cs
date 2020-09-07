@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using MySql.Data.MySqlClient;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,6 +51,9 @@ public class GameManager : MonoBehaviour
     public int createcoffeeCount = 0;
     public static int penalty = 0;
     public int tryCount = 0; //재시도 횟수
+
+    //DBConnector
+    DBConnector dbConnector;
 
     private void Awake()
     {
@@ -114,6 +118,8 @@ public class GameManager : MonoBehaviour
             {
                 data += 1;
                 hit.rigidbody.velocity = new Vector3(UnityEngine.Random.Range(-4, 4), 3, UnityEngine.Random.Range(-4, 4));
+                EmployeeControl victim = hit.transform.GetComponent<EmployeeControl>();
+                victim.playWhipSound();
                 Debug.Log("click coworker");
             }
             else if(hit.transform.tag == "Player")
@@ -204,6 +210,13 @@ public class GameManager : MonoBehaviour
     void showProjectName()
     {
         Project_Name.sprite = ProjectName[stage];
+    }
+
+    public void callMysql()
+    {
+        MySqlDataReader reader = DBConnector.Instance.doQuery
+            ("insert into leaderboard values (0,\"test\",30,30,30,30);");
+        Debug.Log("Done!");
     }
 
     public void Save()

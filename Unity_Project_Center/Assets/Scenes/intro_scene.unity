@@ -288,6 +288,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1023051586}
+        m_MethodName: callMysql
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &78924126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,7 +826,7 @@ RectTransform:
   - {fileID: 1121426558}
   - {fileID: 1446257452}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1228,7 +1239,7 @@ RectTransform:
   - {fileID: 1570731532}
   - {fileID: 1287914574}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1552,6 +1563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4900857eab5e1d24a8d9c5d00cabe894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: 0
   prefabCoffee: {fileID: 1573329297470402, guid: 5a755b0cb9b4aed48b79e465163413f2,
     type: 3}
   Panel_Gauge: {fileID: 1563780119}
@@ -1560,7 +1572,6 @@ MonoBehaviour:
     type: 3}
   Panel_TimeGauge: {fileID: 534627680}
   limitTime: 60
-  tryCount: 0
   stage: 0
   ProjectName:
   - {fileID: 21300000, guid: 06f035e627ca39e4989a24e9e5bea681, type: 3}
@@ -1579,6 +1590,9 @@ MonoBehaviour:
   BP: {fileID: 1583092185}
   Conflict: {fileID: 1570731531}
   Late: {fileID: 1287914571}
+  playTime: 0
+  createcoffeeCount: 0
+  tryCount: 0
 --- !u!4 &1023051587
 Transform:
   m_ObjectHideFlags: 0
@@ -1591,7 +1605,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1023051588
 MonoBehaviour:
@@ -1864,7 +1878,7 @@ RectTransform:
   - {fileID: 1159962095}
   - {fileID: 989649797}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3002,7 +3016,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 40.995003, y: -155.34601, z: -551.453}
 --- !u!64 &1861573723
 MeshCollider:
@@ -3234,7 +3248,7 @@ RectTransform:
   - {fileID: 78924124}
   - {fileID: 1326261540}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3323,7 +3337,7 @@ Transform:
   - {fileID: 491068646}
   - {fileID: 1375754684}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &548840587382812603
 GameObject:

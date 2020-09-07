@@ -10,6 +10,7 @@ public class EmployeeControl : MonoBehaviour
     public Text enemyName;
     public Mate info = new Mate();
     public Image hp_Gauge;
+    public AudioSource whipSound;
     public static bool startflag = false;
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class EmployeeControl : MonoBehaviour
 
         canvas = GetComponentInChildren<Canvas>();
         enemyName = canvas.GetComponentInChildren<Text>();
+        whipSound = GetComponent<AudioSource>();
         if (string.IsNullOrEmpty(info.name))
         {
             setInfo();
@@ -115,6 +117,10 @@ public class EmployeeControl : MonoBehaviour
     public static void gameStop()
     {
         startflag = false;
+    }
+    public void playWhipSound()
+    {
+        whipSound.Play();
     }
 }
 public class Mate
