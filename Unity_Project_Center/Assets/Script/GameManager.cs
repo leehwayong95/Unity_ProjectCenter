@@ -57,10 +57,14 @@ public class GameManager : MonoBehaviour
     DBConnector dbConnector;
     bool doneFlag = false;
 
+    //light Control
+    introlightControl pinLight;
+
     private void Awake()
     {
         gm = this;
         DontDestroyOnLoad(this);
+        pinLight = GameObject.Find("Directional Light").GetComponent<introlightControl>();
     }
 
     void Start()
@@ -268,13 +272,16 @@ public class GameManager : MonoBehaviour
     {
         //GameObject Gcanvas = GameObject.Find("InputNicknameCanvas");
         Canvas canvas = GameObject.Find("InputNicknameCanvas").GetComponent<Canvas>();
-        Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
+        //Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
         Text Nickname = canvas.GetComponentInChildren<InputField>().GetComponentInChildren<Text>();
-        userName = Nickname.text.ToString();
-        EmployeeControl.gameStart();
-        PlayerControl.gameStart();
-        SceneManager.LoadScene(1);
-        nextCanvas.enabled = true;
+        VideoStop();
+        userName = Nickname.text.ToString().Trim();
+        canvas.enabled = false;
+
+        //EmployeeControl.gameStart();
+        //PlayerControl.gameStart();
+            pinLight.closeLight();//SceneLoad 포함
+        //nextCanvas.enabled = true;
         StartCoroutine(countPlayTime());
     }
 
@@ -283,14 +290,13 @@ public class GameManager : MonoBehaviour
         PlayerControl.gameStop();
         EmployeeControl.gameStop();
         Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
-        Fail.SetActive(false);
+        inGamelightControl light = GameObject.Find("Directional Light").GetComponent<inGamelightControl>();
+        nextCanvas.enabled = false;
         penalty = 0;
         Time.timeScale = 1.0f;
         limitTime = 60;
-
-        nextCanvas.enabled = false;
-        SceneManager.LoadScene(0);
         tryCount++;
+        light.restartScene();
     }
 
     public static void VideoStop()
@@ -313,8 +319,6 @@ public class GameManager : MonoBehaviour
         //String 인코딩
         byte[] bytesForEncoding = UTF8Encoding.UTF8.GetBytes(userName);
         string encodedString = UTF8Encoding.UTF8.GetString(bytesForEncoding);
-
-        Debug.Log(userName);
         MySqlDataReader reader = DBConnector.Instance.doQuery
             ("insert into leaderboard values " +
             "(0,\"" + encodedString + "\"," + playTime + "," + createcoffeeCount + "," + penalty + "," + tryCount + ");"
