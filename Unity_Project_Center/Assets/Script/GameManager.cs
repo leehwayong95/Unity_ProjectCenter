@@ -274,7 +274,7 @@ public class GameManager : MonoBehaviour
         Canvas canvas = GameObject.Find("InputNicknameCanvas").GetComponent<Canvas>();
         //Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
         Text Nickname = canvas.GetComponentInChildren<InputField>().GetComponentInChildren<Text>();
-        VideoStop();
+        //VideoStop();
         userName = Nickname.text.ToString().Trim();
         canvas.enabled = false;
 
