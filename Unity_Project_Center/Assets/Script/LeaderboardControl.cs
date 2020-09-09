@@ -41,7 +41,6 @@ public class LeaderboardControl : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && dbflag == false)
         {
             StartCoroutine(closeScene());
-            Debug.Log("there");
         }
         else if (Input.GetMouseButtonUp(0) && dbflag == true)
         {
