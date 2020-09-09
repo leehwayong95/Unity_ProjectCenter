@@ -213,10 +213,10 @@ public class GameManager : MonoBehaviour
 
     void penaltyControl()
     {
-        if(penalty <= -20)
+        if(penalty <= -20 && Fail.activeSelf == false)
         {
             Fail.SetActive(true);
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
         }
     }
 
@@ -294,15 +294,18 @@ public class GameManager : MonoBehaviour
         PlayerControl.gameStop();
         EmployeeControl.gameStop();
         Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
-        inGamelightControl light = GameObject.Find("Directional Light").GetComponent<inGamelightControl>();
+        //inGamelightControl light = GameObject.Find("Directional Light").GetComponent<inGamelightControl>();
         nextCanvas.enabled = false;
-        Fail.SetActive(false);
-        StopCoroutine(countPlayTime());
         penalty = 0;
+        Fail.SetActive(false);
         Time.timeScale = 1.0f;
         limitTime = 60;
+        data = 0;
+        stage = 0;
         tryCount++;
-        light.restartScene();
+        //StopCoroutine(countPlayTime());
+        //StartCoroutine(light.closeScene());
+        SceneManager.LoadScene(0);
     }
 
     public static void VideoStop()

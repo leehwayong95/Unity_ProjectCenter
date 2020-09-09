@@ -15,6 +15,8 @@ public class LeaderboardControl : MonoBehaviour
     public Text coffee;
     public Text trycount;
 
+    int click = 0;
+    [SerializeField]
     bool dbflag =false ;
 
     // Start is called before the first frame update
@@ -36,9 +38,18 @@ public class LeaderboardControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && dbflag == false)
         {
             StartCoroutine(closeScene());
+            Debug.Log("there");
+        }
+        else if (Input.GetMouseButtonUp(0) && dbflag == true)
+        {
+            StartCoroutine(closeScene());
+            playtime.enabled = false;
+            penalty.enabled = false;
+            coffee.enabled = false;
+            trycount.enabled = false;
         }
         else if (pinlight.enabled == false && dbflag == false)
         {
@@ -83,6 +94,8 @@ public class LeaderboardControl : MonoBehaviour
         }
         pinlight.enabled = false;
         yield return new WaitForSeconds(1f);
+        if (dbflag)
+            Application.Quit();
         StopCoroutine(closeScene());
     }
 

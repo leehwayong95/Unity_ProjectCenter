@@ -27,7 +27,6 @@ public class inGamelightControl : MonoBehaviour
                 break;
             yield return new WaitForSeconds(incresement--);
         }
-        StopCoroutine(openScene());
     }
 
     public void restartScene()
@@ -35,7 +34,7 @@ public class inGamelightControl : MonoBehaviour
         StartCoroutine(closeScene());
     }
 
-    IEnumerator closeScene()
+    public IEnumerator closeScene()
     {
         float incresement = 0.3f;
         while (true)
@@ -46,12 +45,19 @@ public class inGamelightControl : MonoBehaviour
             yield return new WaitForSeconds(incresement--);
         }
         pinlight.enabled = false;
-        StopCoroutine(closeScene());
+        
         yield return new WaitForSeconds(1f);
         if (GameManager.gm.stage < 7)
-            SceneManager.LoadScene(0);
+        {
+            Debug.Log("u r loser");
+            //SceneManager.LoadScene(2);
+        }
         else
+        {
+            Debug.Log("u r winner");
+            Canvas canvas = GameObject.Find("Logo").GetComponent<Canvas>();
+            canvas.enabled = false;
             SceneManager.LoadScene(3);
-
+        }
     }
 }
