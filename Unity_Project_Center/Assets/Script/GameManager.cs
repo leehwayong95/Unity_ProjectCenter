@@ -58,13 +58,13 @@ public class GameManager : MonoBehaviour
     bool doneFlag = false;
 
     //light Control
-    introlightControl pinLight;
+    introlightControl intropinLight;
 
     private void Awake()
     {
         gm = this;
         DontDestroyOnLoad(this);
-        pinLight = GameObject.Find("Directional Light").GetComponent<introlightControl>();
+        intropinLight = GameObject.Find("Directional Light").GetComponent<introlightControl>();
     }
 
     void Start()
@@ -97,11 +97,15 @@ public class GameManager : MonoBehaviour
         else if(stage == 7) //7stage 클리어시
         {
             StopCoroutine(countPlayTime());
+            inGamelightControl light = GameObject.Find("Directional Light").GetComponent<inGamelightControl>();
+            //여기에 DB push
             if (!doneFlag)
+            {
                 StartCoroutine(callMysql());
+                light.restartScene();
+            }
             else
                 StopCoroutine(callMysql());
-            //여기에 DB push
         }
 
         if (penalty < 0)
@@ -280,7 +284,7 @@ public class GameManager : MonoBehaviour
 
         //EmployeeControl.gameStart();
         //PlayerControl.gameStart();
-            pinLight.closeLight();//SceneLoad 포함
+            intropinLight.closeLight();//SceneLoad 포함
         //nextCanvas.enabled = true;
         StartCoroutine(countPlayTime());
     }
@@ -292,6 +296,8 @@ public class GameManager : MonoBehaviour
         Canvas nextCanvas = GameObject.Find("Logo").GetComponent<Canvas>();
         inGamelightControl light = GameObject.Find("Directional Light").GetComponent<inGamelightControl>();
         nextCanvas.enabled = false;
+        Fail.SetActive(false);
+        StopCoroutine(countPlayTime());
         penalty = 0;
         Time.timeScale = 1.0f;
         limitTime = 60;

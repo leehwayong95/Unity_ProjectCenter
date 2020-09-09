@@ -41,13 +41,17 @@ public class inGamelightControl : MonoBehaviour
         while (true)
         {
             pinlight.spotAngle -= 1;
-            if (pinlight.spotAngle == 1)
+            if (pinlight.spotAngle <= 1)
                 break;
             yield return new WaitForSeconds(incresement--);
         }
         pinlight.enabled = false;
         StopCoroutine(closeScene());
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
+        if (GameManager.gm.stage < 7)
+            SceneManager.LoadScene(0);
+        else
+            SceneManager.LoadScene(3);
+
     }
 }
