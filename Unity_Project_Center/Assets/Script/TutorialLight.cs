@@ -31,7 +31,7 @@ public class TutorialLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (touchcount > 10 )
+        if (touchcount >= 10 )
         {
             if (pinlight.enabled == false)
             {
